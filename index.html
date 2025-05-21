@@ -76,6 +76,9 @@
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            -webkit-tap-highlight-color: transparent; /* Mejora para dispositivos móviles */
+            touch-action: manipulation; /* Mejora para dispositivos móviles */
+            user-select: none; /* Previene la selección de texto */
         }
         
         .btn-yes {
@@ -357,15 +360,19 @@
             cursor: pointer;
             transition: all 0.5s ease;
             position: relative;
+            -webkit-tap-highlight-color: transparent; /* Mejora para dispositivos móviles */
+            touch-action: manipulation; /* Mejora para dispositivos móviles */
         }
         
         .character img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none; /* Asegura que el evento de clic se registre en el div padre */
         }
         
-        .character:hover {
+        .character:hover,
+        .character:active { /* Añadido estado active para móviles */
             transform: scale(1.1) rotate(5deg);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
@@ -716,18 +723,34 @@
         // Imagen para mostrar cuando ambos personajes están juntos (la selfie)
         const stitchAngelTogetherImg = "Stitch_Angel.png"; // Imagen de ambos juntos
         
-        // Función para animar a Stitch y Angel
-        stitch.addEventListener('click', function() {
+        // Función para animar a Stitch y Angel - Mejorada para móviles
+        stitch.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevenir comportamiento predeterminado
             stitchClicked = true;
             stitch.style.transform = 'translateX(30px) rotate(0deg)';
             checkCharacters();
         });
         
-        angel.addEventListener('click', function() {
+        stitch.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevenir comportamiento predeterminado
+            stitchClicked = true;
+            stitch.style.transform = 'translateX(30px) rotate(0deg)';
+            checkCharacters();
+        }, {passive: false});
+        
+        angel.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevenir comportamiento predeterminado
             angelClicked = true;
             angel.style.transform = 'translateX(-30px) rotate(0deg)';
             checkCharacters();
         });
+        
+        angel.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevenir comportamiento predeterminado
+            angelClicked = true;
+            angel.style.transform = 'translateX(-30px) rotate(0deg)';
+            checkCharacters();
+        }, {passive: false});
         
         function checkCharacters() {
             if (stitchClicked && angelClicked) {
