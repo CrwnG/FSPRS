@@ -79,14 +79,14 @@
         }
         
         .btn-yes {
-            background-color: #FF4F79;
+            background-color: #40E0D0;
             color: white;
         }
         
         .btn-yes:hover {
-            background-color: #ff7c9c;
+            background-color: #48D1CC;
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 79, 121, 0.6);
+            box-shadow: 0 0 20px rgba(64, 224, 208, 0.6);
         }
         
         .btn-no {
@@ -386,11 +386,11 @@
             top: 50%;
             transform: translate(-50%, -50%) scale(0);
             font-size: 60px;
-            color: #FF4F79;
+            color: #40E0D0;
             z-index: 10;
             transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             opacity: 0;
-            text-shadow: 0 0 15px rgba(255, 79, 121, 0.8);
+            text-shadow: 0 0 15px rgba(64, 224, 208, 0.8);
         }
         
         .character-name {
@@ -418,7 +418,7 @@
         
         /* Estilos para celebración de aniversario */
         .anniversary-banner {
-            background: linear-gradient(135deg, #ff4f79, #ff9fd9);
+            background: linear-gradient(135deg, #40E0D0, #48D1CC);
             padding: 15px 30px;
             border-radius: 50px;
             margin: 20px auto 30px;
@@ -507,8 +507,8 @@
         
         .milestone:nth-child(5) {
             left: 90%;
-            background: #FF4F79;
-            box-shadow: 0 0 15px rgba(255, 79, 121, 0.8);
+            background: #40E0D0;
+            box-shadow: 0 0 15px rgba(64, 224, 208, 0.8);
         }
         
         .milestone-tooltip {
@@ -572,6 +572,27 @@
             100% { opacity: 1; transform: scale(1); }
         }
         
+        /* Banner de imagen superior */
+        .top-banner {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .top-banner img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .top-banner:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        
         /* Estilos para dispositivos móviles */
         @media (max-width: 768px) {
             .button-group {
@@ -630,7 +651,7 @@
         <h1>¡Ohana significa familia!</h1>
         
         <div class="anniversary-banner">
-            <p class="anniversary-text">1.2 Años Juntos ❤️</p>
+            <p class="anniversary-text">1.2 Años Juntos 💙</p>
         </div>
         
         <div class="timeline">
@@ -662,11 +683,11 @@
         <div class="characters-wrapper">
             <div class="characters-container">
                 <div class="character stitch" id="stitch">
-                    <img src="https://i.imgur.com/qGhiK6r.png" alt="Stitch">
+                    <img src="/api/placeholder/150/150" alt="Stitch">
                 </div>
-                <div class="heart" id="heart">❤️</div>
+                <div class="heart" id="heart">💙</div>
                 <div class="character angel" id="angel">
-                    <img src="https://i.imgur.com/OKb5oZ5.png" alt="Angel">
+                    <img src="/api/placeholder/150/150" alt="Angel">
                 </div>
             </div>
             <div class="animation-hint">¡Haz clic en Stitch y Angel para ver qué pasa!</div>
@@ -676,15 +697,15 @@
         
         <div class="photo-gallery">
             <div class="photo-container">
-                <img id="photo1" src="f3.jpg" alt="Fiona con su peluche de Angel">
+                <img id="photo1" src="F1.jpg" alt="Fiona con su peluche de Angel">
                 <div class="photo-caption">Tu y Angel: mi corazón se derrite cuando te veo sonreír</div>
             </div>
             <div class="photo-container">
-                <img id="photo2" src="f2.jpg" alt="Nosotros juntos">
+                <img id="photo2" src="F2.jpg" alt="Nosotros juntos">
                 <div class="photo-caption">Nuestros momentos juntos son los que más atesoro</div>
             </div>
             <div class="photo-container">
-                <img id="photo3" src="f1.jpg" alt="Fiona con rosas">
+                <img id="photo3" src="F3.jpg" alt="Fiona con rosas">
                 <div class="photo-caption">Tu felicidad es la mía... ¡y aún nos quedan tantas aventuras!</div>
             </div>
         </div>
@@ -713,6 +734,13 @@
         let stitchClicked = false;
         let angelClicked = false;
         
+        // Imagen para mostrar cuando ambos personajes están juntos (la selfie)
+        const stitchAngelTogetherImg = "Stitch_Angel.png"; // Imagen de ambos juntos
+        
+        // Actualizar las imágenes de Stitch y Angel con las del repositorio
+        document.querySelector('.character.stitch img').src = "Stitch.webp"; // Imagen de Stitch
+        document.querySelector('.character.angel img').src = "Angel.webp"; // Imagen de Angel
+        
         // Función para animar a Stitch y Angel
         stitch.addEventListener('click', function() {
             stitchClicked = true;
@@ -731,12 +759,50 @@
                 heart.style.transform = 'translate(-50%, -50%) scale(1.3)';
                 heart.style.opacity = '1';
                 
+                // Mostrar la imagen de ambos personajes juntos
+                const charactersContainer = document.querySelector('.characters-container');
+                
+                // Crear un contenedor para la nueva imagen
+                const togetherImgContainer = document.createElement('div');
+                togetherImgContainer.style.position = 'absolute';
+                togetherImgContainer.style.top = '50%';
+                togetherImgContainer.style.left = '50%';
+                togetherImgContainer.style.transform = 'translate(-50%, -50%)';
+                togetherImgContainer.style.width = '300px';
+                togetherImgContainer.style.height = '300px';
+                togetherImgContainer.style.zIndex = '15';
+                togetherImgContainer.style.opacity = '0';
+                togetherImgContainer.style.transition = 'opacity 0.8s ease';
+                togetherImgContainer.style.borderRadius = '15px';
+                togetherImgContainer.style.overflow = 'hidden';
+                togetherImgContainer.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.4)';
+                
+                // Crear la imagen
+                const togetherImg = document.createElement('img');
+                togetherImg.src = stitchAngelTogetherImg;
+                togetherImg.alt = "Stitch y Angel juntos";
+                togetherImg.style.width = '100%';
+                togetherImg.style.height = '100%';
+                togetherImg.style.objectFit = 'cover';
+                
+                togetherImgContainer.appendChild(togetherImg);
+                charactersContainer.appendChild(togetherImgContainer);
+                
+                // Ocultar los personajes originales gradualmente
+                stitch.style.opacity = '0';
+                angel.style.opacity = '0';
+                
+                // Mostrar la imagen nueva
+                setTimeout(() => {
+                    togetherImgContainer.style.opacity = '1';
+                }, 300);
+                
                 // Hacer que el botón "Sí" sea más llamativo
                 const yesButton = document.getElementById('yesButton');
                 yesButton.style.transform = 'scale(1.1)';
-                yesButton.style.boxShadow = '0 0 25px #FF4F79';
+                yesButton.style.boxShadow = '0 0 25px #40E0D0';
                 
-                // Crear chispas alrededor del corazón
+                // Crear chispas alrededor de la imagen
                 createSparkles();
                 
                 // Crear un pequeño confeti sobre los personajes
@@ -749,14 +815,14 @@
                 smallConfetti.style.pointerEvents = 'none';
                 smallConfetti.style.zIndex = '5';
                 
-                document.querySelector('.characters-container').appendChild(smallConfetti);
+                charactersContainer.appendChild(smallConfetti);
                 
                 for (let i = 0; i < 40; i++) {
                     const confetti = document.createElement('div');
                     confetti.style.position = 'absolute';
-                    confetti.style.width = `${Math.random() * 8 + 3}px`;
-                    confetti.style.height = `${Math.random() * 8 + 3}px`;
-                    confetti.style.backgroundColor = ['#FF4F79', '#FFD700', '#65C7F7', '#ffffff', '#FF9FD9'][Math.floor(Math.random() * 5)];
+                    confetti.style.width = Math.random() * 8 + 3 + 'px';
+                    confetti.style.height = Math.random() * 8 + 3 + 'px';
+                    confetti.style.backgroundColor = ['#40E0D0', '#FFD700', '#65C7F7', '#ffffff', '#48D1CC'][Math.floor(Math.random() * 5)];
                     confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
                     confetti.style.top = '50%';
                     confetti.style.left = '50%';
@@ -785,12 +851,12 @@
             }
         }
         
-        // Función para crear chispas alrededor del corazón
+        // Función para crear chispas alrededor del corazón o imagen
         function createSparkles() {
             const sparklesContainer = document.createElement('div');
             sparklesContainer.classList.add('sparkles');
-            sparklesContainer.style.width = '200px';
-            sparklesContainer.style.height = '200px';
+            sparklesContainer.style.width = '350px';  // Área más grande para rodear la imagen
+            sparklesContainer.style.height = '350px';
             sparklesContainer.style.position = 'absolute';
             sparklesContainer.style.top = '50%';
             sparklesContainer.style.left = '50%';
@@ -799,21 +865,22 @@
             
             document.querySelector('.characters-container').appendChild(sparklesContainer);
             
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 18; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.classList.add('sparkle');
                 
                 const size = Math.random() * 4 + 2;
-                const angle = (i / 12) * Math.PI * 2;
-                const distance = 70;
+                const angle = (i / 18) * Math.PI * 2;
+                const distance = 140;  // Radio más grande
                 const x = Math.cos(angle) * distance;
                 const y = Math.sin(angle) * distance;
                 
-                sparkle.style.width = `${size}px`;
-                sparkle.style.height = `${size}px`;
-                sparkle.style.left = `calc(50% + ${x}px)`;
-                sparkle.style.top = `calc(50% + ${y}px)`;
-                sparkle.style.animationDelay = `${Math.random() * 0.5}s`;
+                sparkle.style.width = size + 'px';
+                sparkle.style.height = size + 'px';
+                sparkle.style.left = 'calc(50% + ' + x + 'px)';
+                sparkle.style.top = 'calc(50% + ' + y + 'px)';
+                sparkle.style.animationDelay = Math.random() * 0.5 + 's';
+                sparkle.style.backgroundColor = Math.random() > 0.5 ? '#40E0D0' : '#FFD700';
                 
                 sparklesContainer.appendChild(sparkle);
             }
@@ -824,7 +891,7 @@
             const photos = document.querySelectorAll('.photo-container');
             photos.forEach(photo => {
                 const randomRotation = Math.random() * 8 - 4; // Entre -4 y 4 grados
-                photo.style.setProperty('--rotation', `${randomRotation}deg`);
+                photo.style.setProperty('--rotation', randomRotation + 'deg');
             });
         });
         
@@ -840,8 +907,8 @@
             const randomY = Math.floor(Math.random() * windowHeight);
             
             noButton.style.position = 'absolute';
-            noButton.style.left = `${randomX}px`;
-            noButton.style.top = `${randomY}px`;
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
         });
         
         // Función para el botón "Sí"
@@ -851,13 +918,23 @@
             
             // Mostrar mensaje de confirmación
             const resultElement = document.getElementById('result');
-            resultElement.innerHTML = '¡Me haces la persona más feliz del mundo, Fiona! Estos 1.2 años han sido mágicos, y ver Lilo & Stitch juntos será la forma perfecta de celebrar. ¡Te amo con todo mi corazón! ❤️';
+            resultElement.innerHTML = '¡Me haces la persona más feliz del mundo, Fiona! Estos 1.2 años han sido mágicos, y ver Lilo & Stitch juntos será la forma perfecta de celebrar. ¡Te amo con todo mi corazón! 💙';
             resultElement.style.opacity = '1';
             
-            // Animar los personajes de celebración
-            stitch.style.animation = 'celebrate 1s infinite alternate';
-            angel.style.animation = 'celebrate 1s infinite alternate';
+            // Animar los personajes de celebración si están visibles
+            if (document.querySelector('.character').style.opacity !== '0') {
+                stitch.style.animation = 'celebrate 1s infinite alternate';
+                angel.style.animation = 'celebrate 1s infinite alternate';
+            }
+            
+            // Animar corazón o imagen según lo que esté visible
             heart.style.animation = 'pulse 1s infinite alternate';
+            
+            // Animar imagen de juntos si existe
+            const togetherImg = document.querySelector('.characters-container > div:last-child');
+            if (togetherImg && togetherImg.tagName !== 'SCRIPT') {
+                togetherImg.style.animation = 'celebrate 1s infinite alternate';
+            }
             
             // Añadir estilos de animación de celebración
             const celebrationStyle = document.createElement('style');
@@ -881,21 +958,21 @@
         // Función para crear confeti
         function createConfetti() {
             const confettiContainer = document.getElementById('confetti');
-            const colors = ['#ff4f79', '#2a75bb', '#ffd700', '#65c7f7', '#ffffff', '#ff9fd9', '#8364e2'];
+            const colors = ['#40E0D0', '#2a75bb', '#ffd700', '#65c7f7', '#ffffff', '#48D1CC', '#8364e2'];
             
             for (let i = 0; i < 200; i++) {
                 const confetti = document.createElement('div');
-                confetti.style.width = `${Math.random() * 10 + 5}px`;
-                confetti.style.height = `${Math.random() * 10 + 5}px`;
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.position = 'absolute';
-                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.left = Math.random() * 100 + '%';
                 confetti.style.top = '-20px';
                 confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
                 
                 const animationDuration = Math.random() * 4 + 2;
-                confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+                confetti.style.animation = 'fall ' + animationDuration + 's linear forwards';
                 
                 confettiContainer.appendChild(confetti);
                 
@@ -933,8 +1010,8 @@
                 anniversaryMessage.style.borderRadius = '20px';
                 anniversaryMessage.style.zIndex = '100';
                 anniversaryMessage.style.maxWidth = '80%';
-                anniversaryMessage.style.boxShadow = '0 0 30px rgba(255, 79, 121, 0.6)';
-                anniversaryMessage.style.border = '2px solid #FF4F79';
+                anniversaryMessage.style.boxShadow = '0 0 30px rgba(64, 224, 208, 0.6)';
+                anniversaryMessage.style.border = '2px solid #40E0D0';
                 anniversaryMessage.style.textAlign = 'center';
                 anniversaryMessage.style.opacity = '0';
                 anniversaryMessage.style.transition = 'opacity 1s ease';
@@ -943,7 +1020,7 @@
                     <h2 style="color: #FFD700; font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 15px;">¡Felices 1.2 Años Juntos!</h2>
                     <p style="font-size: 1.2rem; margin-bottom: 15px;">Cada momento contigo ha sido un tesoro que guardo en mi corazón.</p>
                     <p style="font-size: 1.2rem; margin-bottom: 20px;">Celebremos nuestro amor con esta película especial y muchas aventuras más por venir.</p>
-                    <button id="closeMessage" style="background: #FF4F79; color: white; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold; cursor: pointer;">Cerrar</button>
+                    <button id="closeMessage" style="background: #40E0D0; color: white; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold; cursor: pointer;">Cerrar</button>
                 `;
                 
                 document.body.appendChild(anniversaryMessage);
@@ -978,7 +1055,7 @@
             glow.style.animation = 'glow 2s infinite alternate';
             
             if (milestone === milestones[milestones.length - 1]) {
-                glow.style.background = 'rgba(255, 79, 121, 0.5)';
+                glow.style.background = 'rgba(64, 224, 208, 0.5)';
             }
             
             milestone.insertBefore(glow, milestone.firstChild);
