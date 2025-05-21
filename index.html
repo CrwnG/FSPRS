@@ -998,47 +998,7 @@
                 document.head.appendChild(styleElement);
             }
             
-            // Agregar mensaje de aniversario especial después del confeti
-            setTimeout(() => {
-                const anniversaryMessage = document.createElement('div');
-                anniversaryMessage.style.position = 'fixed';
-                anniversaryMessage.style.top = '50%';
-                anniversaryMessage.style.left = '50%';
-                anniversaryMessage.style.transform = 'translate(-50%, -50%)';
-                anniversaryMessage.style.background = 'rgba(0, 0, 0, 0.8)';
-                anniversaryMessage.style.padding = '30px';
-                anniversaryMessage.style.borderRadius = '20px';
-                anniversaryMessage.style.zIndex = '100';
-                anniversaryMessage.style.maxWidth = '80%';
-                anniversaryMessage.style.boxShadow = '0 0 30px rgba(64, 224, 208, 0.6)';
-                anniversaryMessage.style.border = '2px solid #40E0D0';
-                anniversaryMessage.style.textAlign = 'center';
-                anniversaryMessage.style.opacity = '0';
-                anniversaryMessage.style.transition = 'opacity 1s ease';
-                
-                anniversaryMessage.innerHTML = `
-                    <h2 style="color: #FFD700; font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 15px;">¡Felices 1.2 Años Juntos!</h2>
-                    <p style="font-size: 1.2rem; margin-bottom: 15px;">Cada momento contigo ha sido un tesoro que guardo en mi corazón.</p>
-                    <p style="font-size: 1.2rem; margin-bottom: 20px;">Celebremos nuestro amor con esta película especial y muchas aventuras más por venir.</p>
-                    <button id="closeMessage" style="background: #40E0D0; color: white; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold; cursor: pointer;">Cerrar</button>
-                `;
-                
-                document.body.appendChild(anniversaryMessage);
-                
-                // Mostrar el mensaje gradualmente
-                setTimeout(() => {
-                    anniversaryMessage.style.opacity = '1';
-                }, 100);
-                
-                // Agregar evento para cerrar el mensaje
-                document.getElementById('closeMessage').addEventListener('click', function() {
-                    anniversaryMessage.style.opacity = '0';
-                    setTimeout(() => {
-                        anniversaryMessage.remove();
-                    }, 1000);
-                });
-                
-            }, 2000);
+            // Se ha eliminado el código del popup de aniversario
         }
         
         // Añadir un efecto de brillo a los hitos de la línea de tiempo
