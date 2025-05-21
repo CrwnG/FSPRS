@@ -76,9 +76,6 @@
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            -webkit-tap-highlight-color: transparent; /* Mejora para dispositivos móviles */
-            touch-action: manipulation; /* Mejora para dispositivos móviles */
-            user-select: none; /* Previene la selección de texto */
         }
         
         .btn-yes {
@@ -360,19 +357,15 @@
             cursor: pointer;
             transition: all 0.5s ease;
             position: relative;
-            -webkit-tap-highlight-color: transparent; /* Mejora para dispositivos móviles */
-            touch-action: manipulation; /* Mejora para dispositivos móviles */
         }
         
         .character img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none; /* Asegura que el evento de clic se registre en el div padre */
         }
         
-        .character:hover,
-        .character:active { /* Añadido estado active para móviles */
+        .character:hover {
             transform: scale(1.1) rotate(5deg);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
@@ -713,142 +706,28 @@
     <div class="confetti hidden" id="confetti"></div>
     
     <script>
-        // Asegurar que el DOM esté completamente cargado antes de ejecutar el código
-        document.addEventListener('DOMContentLoaded', function() {
-            // Elementos principales
-            const stitch = document.getElementById('stitch');
-            const angel = document.getElementById('angel');
-            const heart = document.getElementById('heart');
-            const yesButton = document.getElementById('yesButton');
-            const noButton = document.getElementById('noButton');
-            
-            // Variables para el estado
-            let stitchClicked = false;
-            let angelClicked = false;
-            
-            // Imagen para mostrar cuando ambos personajes están juntos
-            const stitchAngelTogetherImg = "Stitch_Angel.png";
-            
-            // Agrega indicación visual para depuración
-            console.log("Script cargado");
-            
-            // ========= EVENTOS PARA STITCH Y ANGEL =========
-            
-            // Función para manejar el clic en Stitch
-            function handleStitchClick() {
-                console.log("Stitch clickeado");
-                stitchClicked = true;
-                stitch.style.transform = 'translateX(30px) rotate(0deg)';
-                checkCharacters();
-            }
-            
-            // Función para manejar el clic en Angel
-            function handleAngelClick() {
-                console.log("Angel clickeado");
-                angelClicked = true;
-                angel.style.transform = 'translateX(-30px) rotate(0deg)';
-                checkCharacters();
-            }
-            
-            // Agregar varios tipos de eventos para asegurar que funcionen en todos los dispositivos
-            stitch.onclick = handleStitchClick;
-            angel.onclick = handleAngelClick;
-            
-            // ========= EVENTOS PARA BOTONES SÍ Y NO =========
-            
-            // Manejar clic en botón Sí
-            function handleYesButton() {
-                console.log("Botón Sí clickeado");
-                // Ocultar botones
-                document.querySelector('.button-group').style.display = 'none';
-                
-                // Mostrar mensaje de confirmación
-                const resultElement = document.getElementById('result');
-                resultElement.innerHTML = 'Me haces la persona mas felstitch, Te amo con todo mi corazon mi amorstitcho 💙';
-                resultElement.style.opacity = '1';
-                
-                // Animar lo que esté visible
-                if (stitch.style.opacity !== '0') {
-                    stitch.style.animation = 'celebrate 1s infinite alternate';
-                }
-                if (angel.style.opacity !== '0') {
-                    angel.style.animation = 'celebrate 1s infinite alternate';
-                }
-                heart.style.animation = 'pulse 1s infinite alternate';
-                
-                // Animar imagen juntos si existe
-                const togetherImg = document.querySelector('.characters-container > div:last-child');
-                if (togetherImg && togetherImg.tagName !== 'SCRIPT') {
-                    togetherImg.style.animation = 'celebrate 1s infinite alternate';
-                }
-                
-                // Añadir estilos de animación
-                const celebrationStyle = document.createElement('style');
-                celebrationStyle.textContent = `
-                    @keyframes celebrate {
-                        0% { transform: translateY(0) scale(1); }
-                        100% { transform: translateY(-10px) scale(1.1); }
-                    }
-                    @keyframes pulse {
-                        0% { transform: translate(-50%, -50%) scale(1); }
-                        100% { transform: translate(-50%, -50%) scale(1.3); }
-                    }
-                `;
-                document.head.appendChild(celebrationStyle);
-                
-                // Crear y mostrar confeti
-                createConfetti();
-                document.getElementById('confetti').classList.remove('hidden');
-            }
-            
-            // Manejar clic en botón No
-            function moveNoButton() {
-                console.log("Botón No clickeado/tocado");
-                // Generar posición aleatoria
-                const windowWidth = window.innerWidth - 200;
-                const windowHeight = window.innerHeight - 100;
-                
-                const randomX = Math.floor(Math.random() * windowWidth);
-                const randomY = Math.floor(Math.random() * windowHeight);
-                
-                noButton.style.position = 'absolute';
-                noButton.style.left = randomX + 'px';
-                noButton.style.top = randomY + 'px';
-            }
-            
-            // Asignar eventos a los botones
-            yesButton.onclick = handleYesButton;
-            noButton.onmouseover = moveNoButton;
-            noButton.onclick = moveNoButton;
+        // Variables para Stitch y Angel
+        const stitch = document.getElementById('stitch');
+        const angel = document.getElementById('angel');
+        const heart = document.getElementById('heart');
+        let stitchClicked = false;
+        let angelClicked = false;
         
-        // Función para animar a Stitch y Angel - Mejorada para móviles
-        stitch.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevenir comportamiento predeterminado
+        // Imagen para mostrar cuando ambos personajes están juntos (la selfie)
+        const stitchAngelTogetherImg = "Stitch_Angel.png"; // Imagen de ambos juntos
+        
+        // Función para animar a Stitch y Angel
+        stitch.addEventListener('click', function() {
             stitchClicked = true;
             stitch.style.transform = 'translateX(30px) rotate(0deg)';
             checkCharacters();
         });
         
-        stitch.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Prevenir comportamiento predeterminado
-            stitchClicked = true;
-            stitch.style.transform = 'translateX(30px) rotate(0deg)';
-            checkCharacters();
-        }, {passive: false});
-        
-        angel.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevenir comportamiento predeterminado
+        angel.addEventListener('click', function() {
             angelClicked = true;
             angel.style.transform = 'translateX(-30px) rotate(0deg)';
             checkCharacters();
         });
-        
-        angel.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Prevenir comportamiento predeterminado
-            angelClicked = true;
-            angel.style.transform = 'translateX(-30px) rotate(0deg)';
-            checkCharacters();
-        }, {passive: false});
         
         function checkCharacters() {
             if (stitchClicked && angelClicked) {
@@ -962,22 +841,3 @@
             document.querySelector('.characters-container').appendChild(sparklesContainer);
             
             for (let i = 0; i < 18; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                
-                const size = Math.random() * 4 + 2;
-                const angle = (i / 18) * Math.PI * 2;
-                const distance = 140;  // Radio más grande
-                const x = Math.cos(angle) * distance;
-                const y = Math.sin(angle) * distance;
-                
-                sparkle.style.width = size + 'px';
-                sparkle.style.height = size + 'px';
-                sparkle.style.left = 'calc(50% + ' + x + 'px)';
-                sparkle.style.top = 'calc(50% + ' + y + 'px)';
-                sparkle.style.animationDelay = Math.random() * 0.5 + 's';
-                sparkle.style.backgroundColor = Math.random() > 0.5 ? '#40E0D0' : '#FFD700';
-                
-                sparklesContainer.appendChild(sparkle);
-            }
-        }
