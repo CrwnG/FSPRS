@@ -713,15 +713,113 @@
     <div class="confetti hidden" id="confetti"></div>
     
     <script>
-        // Variables para Stitch y Angel
-        const stitch = document.getElementById('stitch');
-        const angel = document.getElementById('angel');
-        const heart = document.getElementById('heart');
-        let stitchClicked = false;
-        let angelClicked = false;
-        
-        // Imagen para mostrar cuando ambos personajes están juntos (la selfie)
-        const stitchAngelTogetherImg = "Stitch_Angel.png"; // Imagen de ambos juntos
+        // Asegurar que el DOM esté completamente cargado antes de ejecutar el código
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos principales
+            const stitch = document.getElementById('stitch');
+            const angel = document.getElementById('angel');
+            const heart = document.getElementById('heart');
+            const yesButton = document.getElementById('yesButton');
+            const noButton = document.getElementById('noButton');
+            
+            // Variables para el estado
+            let stitchClicked = false;
+            let angelClicked = false;
+            
+            // Imagen para mostrar cuando ambos personajes están juntos
+            const stitchAngelTogetherImg = "Stitch_Angel.png";
+            
+            // Agrega indicación visual para depuración
+            console.log("Script cargado");
+            
+            // ========= EVENTOS PARA STITCH Y ANGEL =========
+            
+            // Función para manejar el clic en Stitch
+            function handleStitchClick() {
+                console.log("Stitch clickeado");
+                stitchClicked = true;
+                stitch.style.transform = 'translateX(30px) rotate(0deg)';
+                checkCharacters();
+            }
+            
+            // Función para manejar el clic en Angel
+            function handleAngelClick() {
+                console.log("Angel clickeado");
+                angelClicked = true;
+                angel.style.transform = 'translateX(-30px) rotate(0deg)';
+                checkCharacters();
+            }
+            
+            // Agregar varios tipos de eventos para asegurar que funcionen en todos los dispositivos
+            stitch.onclick = handleStitchClick;
+            angel.onclick = handleAngelClick;
+            
+            // ========= EVENTOS PARA BOTONES SÍ Y NO =========
+            
+            // Manejar clic en botón Sí
+            function handleYesButton() {
+                console.log("Botón Sí clickeado");
+                // Ocultar botones
+                document.querySelector('.button-group').style.display = 'none';
+                
+                // Mostrar mensaje de confirmación
+                const resultElement = document.getElementById('result');
+                resultElement.innerHTML = 'Me haces la persona mas felstitch, Te amo con todo mi corazon mi amorstitcho 💙';
+                resultElement.style.opacity = '1';
+                
+                // Animar lo que esté visible
+                if (stitch.style.opacity !== '0') {
+                    stitch.style.animation = 'celebrate 1s infinite alternate';
+                }
+                if (angel.style.opacity !== '0') {
+                    angel.style.animation = 'celebrate 1s infinite alternate';
+                }
+                heart.style.animation = 'pulse 1s infinite alternate';
+                
+                // Animar imagen juntos si existe
+                const togetherImg = document.querySelector('.characters-container > div:last-child');
+                if (togetherImg && togetherImg.tagName !== 'SCRIPT') {
+                    togetherImg.style.animation = 'celebrate 1s infinite alternate';
+                }
+                
+                // Añadir estilos de animación
+                const celebrationStyle = document.createElement('style');
+                celebrationStyle.textContent = `
+                    @keyframes celebrate {
+                        0% { transform: translateY(0) scale(1); }
+                        100% { transform: translateY(-10px) scale(1.1); }
+                    }
+                    @keyframes pulse {
+                        0% { transform: translate(-50%, -50%) scale(1); }
+                        100% { transform: translate(-50%, -50%) scale(1.3); }
+                    }
+                `;
+                document.head.appendChild(celebrationStyle);
+                
+                // Crear y mostrar confeti
+                createConfetti();
+                document.getElementById('confetti').classList.remove('hidden');
+            }
+            
+            // Manejar clic en botón No
+            function moveNoButton() {
+                console.log("Botón No clickeado/tocado");
+                // Generar posición aleatoria
+                const windowWidth = window.innerWidth - 200;
+                const windowHeight = window.innerHeight - 100;
+                
+                const randomX = Math.floor(Math.random() * windowWidth);
+                const randomY = Math.floor(Math.random() * windowHeight);
+                
+                noButton.style.position = 'absolute';
+                noButton.style.left = randomX + 'px';
+                noButton.style.top = randomY + 'px';
+            }
+            
+            // Asignar eventos a los botones
+            yesButton.onclick = handleYesButton;
+            noButton.onmouseover = moveNoButton;
+            noButton.onclick = moveNoButton;
         
         // Función para animar a Stitch y Angel - Mejorada para móviles
         stitch.addEventListener('click', function(e) {
