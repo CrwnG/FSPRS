@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Fiona: Nuestro Mesiversario con la personita que amo</title>
+    <title>Para Fiona: Nuestro Aniversario y Lilo & Stitch</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -648,7 +648,7 @@
         <div class="ear left"></div>
         <div class="ear right"></div>
         
-        <h1>Te amo mi amorstitcho</h1>
+        <h1>¡Ohana significa familia!</h1>
         
         <div class="anniversary-banner">
             <p class="anniversary-text">1.2 Años Juntos 💙</p>
@@ -656,27 +656,27 @@
         
         <div class="timeline">
             <div class="milestone">
-                <div class="milestone-tooltip">Desde un dia especial como calabazas</div>
+                <div class="milestone-tooltip">Nuestro primer día juntos</div>
             </div>
             <div class="milestone">
-                <div class="milestone-tooltip">Hasta nuestro primer beso</div>
+                <div class="milestone-tooltip">Nuestra primera cita especial</div>
             </div>
             <div class="milestone">
-                <div class="milestone-tooltip">Hasta superar todos nuestros retos</div>
+                <div class="milestone-tooltip">Nuestro primer "Te amo"</div>
             </div>
             <div class="milestone">
-                <div class="milestone-tooltip">Celebramos nuestro primer año de novios juntos</div>
+                <div class="milestone-tooltip">Nuestro primer año juntos</div>
             </div>
             <div class="milestone">
-                <div class="milestone-tooltip">hoy 1.2 años de amor</div>
+                <div class="milestone-tooltip">¡Hoy! 1.2 años de amor</div>
             </div>
         </div>
         
         <div class="message">
-            <p>Mi fiamor sincero,</p>
-            <p>Hoy celebramos 1.2 años de amor, Ristchas y momentos stitcholvidables Cada sonrisa a tu lado ha sido un regalo, y quiero celebrarlo de una manera especial.</p>
-            <p>Queria hacerte la invitacion porque no es formal todavia, para ver la película de Lilo & Stitch, pelicula de caricatura tambien y queria ver esta pelicula que es muy importante para ti, con la persona mas importante para mi. </p>
-            <p>Stitch dice, "Ohana significa familia", y tu te has convertido en la familia que elegí con todo mi corazón.</p>
+            <p>Mi hermosa Fiona,</p>
+            <p>Hoy celebramos 1.2 años de amor, risas y momentos inolvidables. Cada día a tu lado ha sido un regalo, y quiero celebrarlo de una manera especial.</p>
+            <p>Sé lo emocionada que estás por la nueva película live action de Lilo & Stitch, y no puedo pensar en una mejor manera de celebrar nuestro aniversario que compartiendo ese momento contigo.</p>
+            <p>Porque como dice Stitch, "Ohana significa familia", y tú te has convertido en la familia que elegí con todo mi corazón.</p>
         </div>
         
         <!-- Sección de Stitch y Angel -->
@@ -690,7 +690,7 @@
                     <img src="/api/placeholder/150/150" alt="Angel">
                 </div>
             </div>
-            <div class="animation-hint">SOMOS TU Y YO, DALE CLICK A NOSOTROS</div>
+            <div class="animation-hint">¡Haz clic en Stitch y Angel para ver qué pasa!</div>
         </div>
         
         <div class="special-moments-title">Nuestros momentos especiales</div>
@@ -706,7 +706,7 @@
             </div>
             <div class="photo-container">
                 <img id="photo3" src="F3.jpg" alt="Fiona con rosas">
-                <div class="photo-caption">Tu felicidad es la mía, verte feliz es mi mayor cumplimiento</div>
+                <div class="photo-caption">Tu felicidad es la mía... ¡y aún nos quedan tantas aventuras!</div>
             </div>
         </div>
         
@@ -714,11 +714,11 @@
         
         <div class="stitch-quote">"Ohana significa familia, y la familia nunca te abandona ni te olvida."</div>
         
-        <h2>¿Me concederías el honor de celebrar nuestro mesiversario viendo Lilo & Stitch juntos?</h2>
+        <h2>¿Me concederías el honor de celebrar nuestro aniversario viendo Lilo & Stitch juntos?</h2>
         
         <div class="button-group">
-            <button class="btn btn-yes" id="yesButton">Si quiero mi amor</button>
-            <button class="btn btn-no" id="noButton">Mejor nadota</button>
+            <button class="btn btn-yes" id="yesButton">¡Sí, me encantaría!</button>
+            <button class="btn btn-no" id="noButton">Necesito pensarlo</button>
         </div>
         
         <div id="result"></div>
@@ -918,7 +918,7 @@
             
             // Mostrar mensaje de confirmación
             const resultElement = document.getElementById('result');
-            resultElement.innerHTML = 'Me haces la persona mas felstitch, Te amo con todo mi corazon mi amorstitcho 💙';
+            resultElement.innerHTML = '¡Me haces la persona más feliz del mundo, Fiona! Estos 1.2 años han sido mágicos, y ver Lilo & Stitch juntos será la forma perfecta de celebrar. ¡Te amo con todo mi corazón! 💙';
             resultElement.style.opacity = '1';
             
             // Animar los personajes de celebración si están visibles
@@ -998,47 +998,7 @@
                 document.head.appendChild(styleElement);
             }
             
-            // Agregar mensaje de aniversario especial después del confeti
-            setTimeout(() => {
-                const anniversaryMessage = document.createElement('div');
-                anniversaryMessage.style.position = 'fixed';
-                anniversaryMessage.style.top = '50%';
-                anniversaryMessage.style.left = '50%';
-                anniversaryMessage.style.transform = 'translate(-50%, -50%)';
-                anniversaryMessage.style.background = 'rgba(0, 0, 0, 0.8)';
-                anniversaryMessage.style.padding = '30px';
-                anniversaryMessage.style.borderRadius = '20px';
-                anniversaryMessage.style.zIndex = '100';
-                anniversaryMessage.style.maxWidth = '80%';
-                anniversaryMessage.style.boxShadow = '0 0 30px rgba(64, 224, 208, 0.6)';
-                anniversaryMessage.style.border = '2px solid #40E0D0';
-                anniversaryMessage.style.textAlign = 'center';
-                anniversaryMessage.style.opacity = '0';
-                anniversaryMessage.style.transition = 'opacity 1s ease';
-                
-                anniversaryMessage.innerHTML = `
-                    <h2 style="color: #FFD700; font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 15px;">¡Felices 1.2 Años Juntos!</h2>
-                    <p style="font-size: 1.2rem; margin-bottom: 15px;">Cada momento contigo ha sido un tesoro que guardo en mi corazón.</p>
-                    <p style="font-size: 1.2rem; margin-bottom: 20px;">Celebremos nuestro amor con esta película especial y muchas aventuras más por venir.</p>
-                    <button id="closeMessage" style="background: #40E0D0; color: white; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold; cursor: pointer;">Cerrar</button>
-                `;
-                
-                document.body.appendChild(anniversaryMessage);
-                
-                // Mostrar el mensaje gradualmente
-                setTimeout(() => {
-                    anniversaryMessage.style.opacity = '1';
-                }, 100);
-                
-                // Agregar evento para cerrar el mensaje
-                document.getElementById('closeMessage').addEventListener('click', function() {
-                    anniversaryMessage.style.opacity = '0';
-                    setTimeout(() => {
-                        anniversaryMessage.remove();
-                    }, 1000);
-                });
-                
-            }, 2000);
+            // Eliminamos el popup que aparecía después del confeti
         }
         
         // Añadir un efecto de brillo a los hitos de la línea de tiempo
